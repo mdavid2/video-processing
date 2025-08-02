@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: pose_app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=pose_data
+      - POSTGRES_USER=pose_user
+      - POSTGRES_PASSWORD=pose_pass
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./samples:/data
+    command: ["python", "main.py"]
+
+  db:
+    image: postgres:15
+    container_name: pose_db
+    restart: always
+    environment:
+      POSTGRES_DB: pose_data
+      POSTGRES_USER: pose_user
+      POSTGRES_PASSWORD: pose_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: pose_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
