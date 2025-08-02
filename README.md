@@ -18,6 +18,7 @@ instructions:
 5. move a video file (or any other file) to the folder samples/to_be_processed
 6. file will be processed (after waiting time) and then moved to folder samples/processed
 7. Pose Detection Processing will be written to samples/processed/pose_data/ as {original_file_name}_pose.json (only in case it is not corrupted).
+8. log file is called pose_extractor.log inside container pose_app
 
 logics:
 1. docker compose because we need 2 offical containers (postgreSQL & redis) for ease of use without any modifications and installations
