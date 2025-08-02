@@ -1,0 +1,9 @@
+{
+  "input_folder": "/Users/mdavid/video_files/to_be_processed",
+  "pose_data_folder": "/Users/mdavid/video_files/processed/pose_data",
+  "processed_folder": "/Users/mdavid/video_files/processed",
+  "scan_interval_sec": 600,
+  "model_path": "yolov8n-pose.pt",
+  "supported_file_formats": [".mp4", ".avi", ".mov", ".mkv"],
+  "db_table_name": "video_processing_results"
+}
